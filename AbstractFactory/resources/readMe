@@ -1,0 +1,96 @@
+Abstract Factory Pattern -
+
+The idea behind an abstract factory pattern is to provide a common interface for creating related
+objects without having to specify their concrete classes.
+
+With an abstract factory pattern, its main purpose is to be able to define an interface so that the
+concrete factories that implement the interface can be interchanged by client code without having
+to know what sort of objects are returned or how they are composed.
+
+The client accesses the factories through the abstract interface.
+
+When to use -
+
+- An abstract factory is good to use when the system in independent of client code, meaning that
+  the the client isn't concerned as to how its objects (products) are created, composed and 
+  represented.
+  
+- An abstract factory is good to use when the system is configurable to have to deal with multiple
+  look and feels (Windows, Unix etc) that are required to be interchanged without the client being
+  able to notice the difference.
+  
+- An abstract factory is good to use when we have a group of factories that provide the same functionality
+  but we want to hide this from the client.
+  
+- An abstract factory is good to use when we want to provide a wide number of classes but only reveal
+  its interface without revealing the internal implementation. 
+  
+Basic Structure - 
+
+1. Abstract Factory 
+
+- The abstract factory defines the common interface to be implemented by concrete factories to 
+  allow clients to make method calls to return created objects.
+  
+2. Concrete Factory
+
+- The concrete factory implements the abstract factories methods to create concrete objects for the
+  client.
+  
+3. Abstract Product
+
+- The abstract product defines a common interface that corresponds to a object that the concrete factory
+  will create and return to the client.
+  
+4. Concrete Product
+
+- The concrete product implements the abstract products methods to create the object that the factory
+  supplies.
+  
+5. Client
+
+- The client refers to the required factory only through its interface.
+- The client only receives the object product classes as the abstract product type rather than the
+  concrete products type. This allows for any abstract factory to provide any type of abstract product
+  object to the client. 
+  
+- To create different concrete product objects, the client should refer to different concrete factories.
+
+Benefits and Drawbacks -
+
+1. The client does not know about the concrete class at all. Because the factory manages the creation
+   of a particular type of concrete product and returns it as the abstraction, a client does not know
+   the specific type of product is has been returned.
+   
+2. Interchanging factories is simple since everything is referred to by its interface. A client only
+   needs to refer to a particular factory by its interface to get an object back, the factory can then
+   be swapped out for another that implements the factory interface.
+   
+3. An abstract factory enforces consistency between its factories. 
+
+4. Extending the functionality can be a bit difficult. To extend functionality we might be required to 
+   extend the abstract factory interface, which would then require all the inheriting factories to then
+   implement the new interface.  
+   
+Implementation Tips -
+
+1. Implement each factory as a singleton, factories should only ever be a single instanced class.
+
+2. The abstract factory interface should only provide methods to create its abstract products. 
+
+Example -
+
+An example of the abstract factory pattern would be to create cars from different manufacturers. In this
+example, the factory and product classes are specified below -
+
+- The abstract factory will define methods to create different types cars. (Implementation tips #2)
+- The concrete factory will be the company that makes (creates) the types of cars specified by the
+  abstract factory (Ferrari, Mercedes, Red Bull, etc).
+  
+- The abstract product will define the type of car and the attributes that the cars have that are
+  common across the different factories. (F1 Car, Prototype Car, Sports Car).
+  
+- The concrete product will be the implementation of the specific car that each factory provides. 
+
+- The client, which will be the program main will be provided with the abstract factories and will
+  product different products dependent on the factory that is called. 
