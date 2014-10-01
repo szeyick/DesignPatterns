@@ -1,0 +1,77 @@
+Builder Pattern -
+
+The intention of the builder pattern is to separate the construction of the object from its representation so that
+the same construction process can create different representations of the object.
+
+In other words we want to be able to "build" a particular object with a variety of data without having to modify the object itself. 
+The "builder" grabs all the available data and builds the object on behalf of the client. 
+
+It is an object creation algorithm designed to reduce the number of constructors or initialisers that an object will have if it becomes
+quite complex. This "many constructors" concept is called telescoping. 
+
+When to use -
+
+- A builder pattern should be used when the algorithm for creating a complex object needs to be independent of the parts that
+  make up the object and how they're assembled. 
+  
+- A builder pattern should be used when we require different ways to construct an object given different sets of data.
+
+Basic Structure -
+
+1. Builder
+
+- The builder defines the abstract interface for creating parts of a "Product" object.
+
+2. Concrete Builder
+
+- The concrete builder constructs and assembles part of the product object.
+- The concrete builder implements the builder interface.
+- The concrete builder keeps track of the product that it creates
+- The concrete builder provides the interface for retrieving the build product.
+- The concrete builder takes requests from the director to add parts to the product.
+- The concrete builder builds the product on behalf of the director. 
+
+3. Director
+
+- The director constructs the object using the builder interface.
+- The director asks the builder to build the object by passing it the data.
+- The director is created by the client and configures it to use the desired builder object. 
+- The director notifies the builder whenever part of the product should be built.
+- The director asks the builder for the product.
+
+4. Product 
+
+- The product is the complex object that is under construction.
+- The products internal representation is created by the concrete builder.
+- The product also includes classes that define parts of the object, and includes interfaces for assembling into the final object.
+
+Benefits and Drawbacks
+
+- How the product is built is hidden from the client.
+- Changing the internal representation of the product will require the builder to be updated.
+- Code for building the object and representing the object are isolated. The client won't know anything about the classes that
+  are in the product.
+  
+- Different directors can use the same builder meaning the builder code is only written once. 
+- Additional control is given to building objects and can be retrieved only when it is finished. 
+
+Example - 
+
+An example of the builder pattern in use is the buying of a car. When we purchase a car, there are many different options
+that it can come with, this is where the builder pattern would be useful. In the counter example of not using an additional
+builder to build the car object, to build a car with all its possible combinations, we might end up having a whole heap of 
+constructors in the car (product) object. 
+
+Optional extras that come with a car could create a telescopic object meaning that for all possible combinations we'll have 
+additional constructors, which might will blow out the size of the object.
+
+So long as the builder is able to provide default values to fill in the gaps for the ones that the director hasn't provided
+we will be able to build a complete object by simply calling the setters that we want to change. By moving the set methods
+and calling them individually through the builder we remove all the excess telescopic constructors from the product object.
+
+For this car example, our structures are as follows - 
+
+- The builder interface defines the options that are available for a car, it also provides a means to retrieve the finished car.
+- The concrete builder is responsible for taking all of the directors instructions on the car to build and its options to builds the car.
+- The director can be seen as the car salesman, relaying the instructions for things to build in the car and asks the builder to do it.
+- The product is the completed car with all its options.
