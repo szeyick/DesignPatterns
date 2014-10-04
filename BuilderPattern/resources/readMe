@@ -1,77 +1,94 @@
 Builder Pattern -
 
-The intention of the builder pattern is to separate the construction of the object from its representation so that
-the same construction process can create different representations of the object.
+The idea behind the builder pattern is to separate the construction of the object from the data that it contains.
+In other words, we would like the object to know as little as possible about how it is built and to only store
+the data that it is supposed to. 
 
-In other words we want to be able to "build" a particular object with a variety of data without having to modify the object itself. 
-The "builder" grabs all the available data and builds the object on behalf of the client. 
+In the builder pattern, the creation of an object is managed by a "builder" who creates the objects on behalf of
+the client. So instead of directly building the object, the client passes to the builder, the values that it 
+wishes the object to have and the builder can then create the object with those values and fills in missing values with
+defaults. 
 
-It is an object creation algorithm designed to reduce the number of constructors or initialisers that an object will have if it becomes
-quite complex. This "many constructors" concept is called telescoping. 
+It should be noted that the builder will only create the object when it is specifically told to do so through a
+creation method in the builders interface that the client calls. This allows the builder to be completely setup 
+with the appropriate values before the object is finally constructed and returned to the client. 
+
+The builder pattern is similar to a factory where its main responsibility is to take a set of values to construct
+an object with, however the main difference here is that the builder will not build the object unless it is 
+told to do so, unlike a factory where the object is expected to be immediately returned. Another difference
+between the builder pattern and a factory is that the builder pattern allows the client to pass in values in a 
+step by step process if needed.
+
+By delegating an objects construction to a builder rather than having multiple constructors or initialisers in
+the object, we reduce the objects size to potentially only containing a single constructor with the rest of the
+object only containing data preventing the problem of telescoping. Telescoping is where an object has numerous
+constructors that dictate how it can be built.
 
 When to use -
 
-- A builder pattern should be used when the algorithm for creating a complex object needs to be independent of the parts that
-  make up the object and how they're assembled. 
+- A builder pattern should be used when we wish to separate the construction of a complex object from the data
+  that is contains.  
+ 
+- A builder pattern should be used when we have many different ways of creating an object that result in a number of
+  constructors being created due to cater for each construction path. 
   
-- A builder pattern should be used when we require different ways to construct an object given different sets of data.
-
 Basic Structure -
 
-1. Builder
+There are 4 main parts of the builder pattern.
 
-- The builder defines the abstract interface for creating parts of a "Product" object.
+1. Builder (Interface)
+
+- The builder defines the abstract interface that allows the director/client to create parts of a "product" object.
+- The builder interface provides the means for a director/client to interact with the concrete builder. 
+- The builder interface provides the methods to assemble and create the product object.
 
 2. Concrete Builder
 
-- The concrete builder constructs and assembles part of the product object.
 - The concrete builder implements the builder interface.
-- The concrete builder keeps track of the product that it creates
-- The concrete builder provides the interface for retrieving the build product.
-- The concrete builder takes requests from the director to add parts to the product.
-- The concrete builder builds the product on behalf of the director. 
+- The concrete builder assembles the parts of the product object through commands provided by the director/client.
+- The concrete builder creates the product when instructed by the director/client. (usually after the parts are assembled).
+- The concrete builder maintains the values that it is has been given by the director/client so it can create the product with the appropriate values.
 
 3. Director
 
-- The director constructs the object using the builder interface.
-- The director asks the builder to build the object by passing it the data.
-- The director is created by the client and configures it to use the desired builder object. 
-- The director notifies the builder whenever part of the product should be built.
-- The director asks the builder for the product.
+- The director passes values to the concrete builder so that it can assemble the product.
+- The director requests the product from the concrete builder through the builder interface.
+- The director acts on behalf of the client to create product objects.
 
 4. Product 
 
-- The product is the complex object that is under construction.
-- The products internal representation is created by the concrete builder.
-- The product also includes classes that define parts of the object, and includes interfaces for assembling into the final object.
+- The product is the complex object that we want to create.
+- The product's internal representation is populated by the concrete builder.
 
 Benefits and Drawbacks
 
-- How the product is built is hidden from the client.
-- Changing the internal representation of the product will require the builder to be updated.
-- Code for building the object and representing the object are isolated. The client won't know anything about the classes that
-  are in the product.
-  
-- Different directors can use the same builder meaning the builder code is only written once. 
-- Additional control is given to building objects and can be retrieved only when it is finished. 
+- The client/director does not know how the product object is created.
+- If the product object is changed (new methods, interfaces), it also requires the builder to be updated.
+- The builder can be used by different directors to construct objects in many ways without having to write multiple constructors.
+- Greater control is given to the creation of objects since it is done through a specific request to the builder meaning that we
+  cannot accidentally create an object.
 
 Example - 
 
-An example of the builder pattern in use is the buying of a car. When we purchase a car, there are many different options
-that it can come with, this is where the builder pattern would be useful. In the counter example of not using an additional
-builder to build the car object, to build a car with all its possible combinations, we might end up having a whole heap of 
-constructors in the car (product) object. 
+An example of the builder pattern in use is when we go to buy a car. When purchasing a car, there are many different extras that
+we can come with it at an additional cost (i.e. GPS, Reverse Camera, Tinted Windows). This customisation is where the builder pattern
+would be useful. 
 
-Optional extras that come with a car could create a telescopic object meaning that for all possible combinations we'll have 
-additional constructors, which might will blow out the size of the object.
+From a programming perspective, to create this Car object with the different combination of extras would require different constructors
+or the specific setting of default values (such as null) on the client side which could become messy. 
+ 
+The combinations of extras could create a telescopic Car object which could become an issue if we start to provide additional extras in
+the future. 
 
-So long as the builder is able to provide default values to fill in the gaps for the ones that the director hasn't provided
-we will be able to build a complete object by simply calling the setters that we want to change. By moving the set methods
-and calling them individually through the builder we remove all the excess telescopic constructors from the product object.
+With the builder pattern, we can have the builder pass on default values to create the car if they are not specific by the client. This
+results in the client not having to pass on unwanted values or even having to know how the objects constructed. All the client/director
+has to do in this case is to pass on the values that it wishes the Car object to have to the builder and then request to have the Car
+constructed and returned. 
 
-For this car example, our structures are as follows - 
+For this purchasing car example, our builder pattern structures are as follows - 
 
-- The builder interface defines the options that are available for a car, it also provides a means to retrieve the finished car.
-- The concrete builder is responsible for taking all of the directors instructions on the car to build and its options to builds the car.
-- The director can be seen as the car salesman, relaying the instructions for things to build in the car and asks the builder to do it.
-- The product is the completed car with all its options.
+- The builder interface will define the options that are available for a car (i.e. GPS, Reverse Camera, Tinted Windows).
+- The builder interface will also provide a method to allow the director/client to request for the Car to be built.
+- The concrete builder will be responsible for holding the values to create the Car with and to also build the Car on behalf of the director/client. 
+- The director in this example would be the car salesman, relaying the instructions for the options that the client (customer) wants to have in their car.
+- The product is the Car. 
