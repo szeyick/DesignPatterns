@@ -1,30 +1,24 @@
 Composite Design Pattern - 
 
-The aim of the composite pattern is to treat a group of objects in the same way as a single instance of the object. The
-idea is to "compose" objects into a tree like structure so it represents a hierarchy. Through the composite pattern, clients
-can treat groups of objects and individual objects as one and the same. 
+The idea behind the composite pattern is to treat a group of objects (a composition) in the same way as we would treat
+a single instance of the object. The composed object should adhere to a tree like structure so it represents a hierarchy.
 
-In OOP, a composite is an object that is a "composition" of one or more similar objects that all have similar functionality. In
-other words, it is "made up of" similar types of objects. 
+A composite is describing an object that is "made up of" similar types of objects. 
 
 When to use -
 
-The composite pattern should be used when clients don't really care about the difference between a composed object and an individual one.
+- The composite pattern should be used when a client doesn't really care about the difference between a composed object and an individual one.
 
-If you find yourself in a situation where you're handling multiple objects in the same way and those objects have identical code, then
-we should consider using the composite pattern. 
+- The composite pattern should be used if we find ourselves handling multiple objects that behave the same and have identical code. 
 
 Basic Structure -
 
-There are three basic pieces to the composite design pattern. 
+There are three main parts to the composite design pattern. 
 
-1. Component
+1. Component (Interface)
 
-- The component is the main part that defines the pattern.
-- The component declares an interface that defines the common methods that will be inherited by an individual object or the composite.
-- The component can also declare in its interface, methods to allow inheriting objects to access its parent in a composite structure.
-- The main drawback for defining the link to the parent in the interface is that individual objects will also be required to implement,
-  which being a single object, makes the method call redundant. 
+- The component is the interface that both leaves (individual) and composed objects inherit and implement.
+- The component can provide methods in its interface to allow objects to access its parent, however this is redundant on leaf objects.
 
 2. Leaf
 - The leaf represents an individual object.
