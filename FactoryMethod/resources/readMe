@@ -1,0 +1,53 @@
+Factory Method
+
+The idea behind the factory method pattern is to allow for the creation of objects without specifying
+the exact class of the object that will be created. 
+
+When to use -
+
+- A factory method can be used when a class cannot anticipate the class of object is needs to create.
+
+- A factory method can be used when it wants its subclasses to specify the objects it creates.
+
+Basic Structure -
+
+There are four main parts of the factory method
+
+1. Product (Interface)
+
+- The product defines the interface of objects that the factory method creates.
+
+2. Concrete Product
+
+- The concrete product implements the product interface.
+
+3. Creator (Interface or Abstraction)
+
+- The creator declares the factory method, which returns an object of the type Product.
+
+- The creator can also define a default implementation of the factory method that returns a 
+  default Concrete Product object.
+  
+- The creator can call the factory method to create a Product object.
+
+- The creator relies on its sub-classes to define the factory method so that it can return the
+  appropriate Concrete Product.
+
+4. Concrete Creator
+
+- The concrete creator can override the factory method to return an instance of the concrete product.
+
+Benefits and Drawbacks
+
+- Factory methods remove the dependency between application classes and client code as the client only
+  deals with the object through the Product interface. 
+  
+- Factory methods might force the client to sub-class the Creator to create a particular Concrete Product.
+
+Example -
+
+An example of the factory method pattern would be the creation of products (mobile phones) through a
+factory. The main thing to take away from this is that the Concrete Creator (subclass) can decide which 
+class to instantiate, so long as it returns it as the type of Product (interface). The Concrete Creator
+after it creates the object, can instantiate it and change its properties before it passes it back to
+the client.
