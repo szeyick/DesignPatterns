@@ -1,0 +1,52 @@
+Prototype Pattern
+
+The prototype pattern is a creational pattern as it describes a way to create an object. It creates
+a duplicate object by cloning the current object rather than directly creating it. Cloning the object
+can be more efficient than creating a new instance of an object. 
+
+The idea behind this pattern is upon the first call to create it, we directly create a new instance of
+the object and cache it. For each subsequent call, if the object we want to create already exists in
+the cache, we clone and return the clone, otherwise we again create a new instance and cache.
+
+When to use -
+
+- The prototype pattern can be used when creating a new instance of an object is expensive.
+- The prototype pattern can be used when object classes are determined at run time.
+
+Basic Structure -
+
+1. Prototype (Interface/Abstract Class)
+
+- The Prototype interface provides the interface to allow sub-class objects to clone themselves.
+- The Prototype interface provides other common methods to be implemented by sub-classes.
+
+2. Concrete Prototype 
+
+- Implements the Prototype interface that contains the method for the object to clone itself. 
+
+3. Prototype Cache
+
+- A class that holds a cache of Concrete Prototypes.
+- Concrete Prototypes are created new and stored in the cache, subsequent calls will clone the
+  object in the cache rather than creating another new instance.
+
+4. Client
+
+- Creates new instances of the Concrete Prototype by asking the Prototype Cache to return new objects.
+ 
+Benefits and Drawbacks -
+
+- The concrete prototypes creation are hidden from the client.
+- Prototypes can be added and removed at run-time for use by the client. It just needs to be registered
+  into the cache.
+- Prototypes can be used to build composite objects, so long as the composite employs the cloneable interface
+  it could be used.
+- A drawback to the prototype method could be if the concrete prototype contains other objects that may not 
+  support the clone operation.
+  
+Example -
+
+An example of a Prototype Pattern would be the creation of shapes. The Prototype interface defines the
+cloneable method and a bunch of other methods to be implemented by their subclasses. The Prototype Cache 
+when starting up will create and load the various shapes into the cache. The client, when needed will
+ask the cache for the object which will return a clone of the original object that was created. 
