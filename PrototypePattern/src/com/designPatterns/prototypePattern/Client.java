@@ -9,13 +9,12 @@ import com.designPatterns.prototypePattern.prototype.Shape;
  * objects by asking the 
  * 
  * @author szeyick
- *
  */
 public class Client {
 
 	/**
 	 * The program main.
-	 * @param args - Command line arguements.
+	 * @param args - Command line arguments.
 	 */
 	public static void main(String[] args) {
 		ShapeCache shapeCache = new ShapeCache();
