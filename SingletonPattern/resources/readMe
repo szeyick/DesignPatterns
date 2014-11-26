@@ -1,0 +1,44 @@
+Singleton Pattern
+
+The purpose of the singleton pattern is to ensure that we only have a single instance of a class and to
+provide single point of access to the created instance.
+
+Sometimes it is important to only have a single instance of a class. An example of this would be an account
+manager that deals with all employees in a company. 
+
+Singleton Pattern vs Static Class in Java
+
+- Methods in static classes cannot be overridden like they can be in a singleton object.
+- Singleton pattern objects are better for maintaining state than static objects. 
+- Singleton pattern objects can be lazily loaded (whenever) whereas static classes are loaded at compile time.
+
+When to use -
+
+- A singleton pattern should be used when you require exactly one instance of the class and it must
+  be accessible to clients from a particular spot.
+  
+- A singleton pattern should be used if it is required to be subclasses at some point. 
+
+Basic Structure
+
+1. Singleton
+
+- It contains a Instance method that lets clients access its unique instance. In Java this would generally be
+  a static method.
+  
+- The singleton class may also be responsible for creating itself, thus hiding the constructor so that noone
+  can create an instance of this class other than the class itself.
+  
+- Clients access the singleton instance soley through the static Instance method.
+
+Benefits and Drawbacks
+
+- Singletons are beneficial as they control how the object instance is accessed.
+
+- Singleton classes can be sub-classed and methods overridden to refine methods and attributes.
+
+- Singleton classes can be easily changed to allow multiple instance of a class, only the static
+  instance method needs to change.
+  
+- Singleton class methods provide flexibility over static methods since they can change and hold state.
+
