@@ -1,0 +1,43 @@
+Creational Pattern Notes
+
+We can create an object by delegating the responsibility through to Abstract Subclasses. This is the
+basis behind the Factory Method, whereby the Factory contains a method that creates a object for the client.
+
+Another way to create objects is through composition. We define an object that knows about the
+classes of the product objects that it creates whereby the Client refers to it through an interface.
+
+The Abstract Factory, Builder Pattern and Prototype Pattern involve the creation of a "Factory" object who
+has the sole responsibility of creating product objects.
+
+- Abstract Factory
+
+The Abstract Factory creates objects of several classes.
+
+- Builder Pattern
+
+The Builder Pattern incrementally builds a complex product object and only returns to the client when
+it is told to do so.
+
+- Prototype Pattern
+
+The Prototype Pattern creates product objects by copying/cloning an existing product object to return.
+
+- Composite Pattern
+
+The Composite Pattern creates complex product objects by combining other product objects. It works like
+a tree structure, where we combine object leaves together to create the product object. It does this by
+sharing a similar interface. In other words, the product object is a "composition" of a bunch of smaller
+product objects.
+
+- Factory Method
+
+In "Factory Method" an object has a method which is responsible for the instantiation of another object.
+
+- Singleton Pattern
+
+The Singleton Pattern ensures that only a single instance of the object is created and used. It contains a
+static method to retrieve the instance as the constructor can usually be hidden. Each call to getInstance()
+will return the same object. The singleton class is responsible for managing itself.
+
+If we have multiple singleton objects, we can also create a registry that manages them all for the Client so
+the client retrieves its instances from the registry rather than directly from the class.
