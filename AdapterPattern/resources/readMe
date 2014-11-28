@@ -1,0 +1,47 @@
+Adapter Pattern
+
+The purpose of the adapter pattern is to allow for classes to work together that couldn't otherwise 
+because of differing interfaces. 
+
+As the name suggests, the client is given an "adapter" interface to convert their class into a 
+compatible type. It functions as the bridge between two incompatible interfaces by providing a
+joining interface.
+
+When to use - 
+
+- The adapter pattern can be used when we want to use an existing class but it does not match the
+interface that we need, we use the adapter pattern to convert it.
+
+Basic Structure - 
+
+1. Target (Interface)
+
+- The target is the interface that the client wants to conform to but has an incompatible class.
+
+2. Client
+
+- The client creates the objects that want to conform to the target interface.
+
+3. Adaptee
+
+- The adaptee is the existing interface that needs to be adapted.
+
+4. Adaptor
+ 
+- The adaptor provides a way to convert the adaptee to the target interface.
+ 
+Benefits and Drawbacks -
+
+- A single adapter will be able to work with all sub-classes of the adaptee if required.
+- Because we specifically create the adapter in the adaptee class, if we sub-class the adaptee we
+  will also need to change the adaptor to refer to the sub-class also.
+ 
+Example -
+
+A real world example of the adapter pattern in use would be the travel power adapters when people
+are overseas. In this case, we as the client might have a phone charger that has a particular type
+of plug that may be incompatible with some of the wall sockets that we encounter around the world.
+
+The travel power adapter in this instance will function as the "Adaptor", our phone charger will 
+function as the "Adaptee" and we are trying to get our phone charger to work with the wall socket 
+which will be the "Target".
