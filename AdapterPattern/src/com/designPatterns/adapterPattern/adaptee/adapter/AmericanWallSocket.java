@@ -12,7 +12,7 @@ package com.designPatterns.adapterPattern.adaptee.adapter;
 public class AmericanWallSocket implements IWallSocket {
 
 	/**
-	 * {@inheritDoc}}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void chargeDevice(String deviceType) {
