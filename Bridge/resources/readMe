@@ -1,0 +1,58 @@
+Bridge Pattern
+
+The idea behind the bridge pattern is to decouple an abstraction from its concrete implementation so
+they can act independently.
+
+An abstract class can generally have several different implementations. The way to do this is to use
+inheritance, where each class inherits the abstract class and provides its own concrete implementation.
+
+This approach binds the concrete implementation to the abstraction, which can make it difficult to
+modify or extend as you'd have to change the implementing subclasses as well.
+
+The bridge pattern involves an interface which acts as a bridge between the implementing class and the
+abstract class allowing them to both be changed without affecting each other.
+
+A real world example of the bridge pattern would be a switch and an appliance.
+
+The abstract class here would be the switch, the class implementing the switch would be a touch, button
+or flick switch. The switch here would turn something on/off, that something could be a TV, computer,
+kettle or whatever.
+
+The bridge would act as the joiner between the abstract switch and the device. The abstract class would
+contain an instance of the device through its interface. This means that we can change the device characteristics
+without affecting the abstract class.
+
+When to use -
+
+- The bridge pattern can be used when you want to avoid binding an abstraction and the concrete implementation.
+
+Basic Structure -
+
+1. Bridge Interface (Implementor)
+
+The bridge interface links the abstract class with the implementing class. The abstract class can refer
+to the implementing class objects through the shared interface.
+
+2. Concrete Bridge Implementation
+
+The concrete bridge implementation implements the methods of the bridge interface. The abstract class does
+not refer to the concrete objects directly and only does it through the interface.
+
+3. Abstract Class
+
+The abstract class inherits the bridge interface as well and has references to the concrete bridge
+implementation objects, but does not know its type exactly.
+
+4. Concrete Abstract Class
+
+The concrete abstract class implements the abstract classes methods.
+
+Benefits and Drawbacks
+
+- The concrete implementation of the abstract class is not bound to an interface, meaning that it is possible
+  for the object to change its implementation.
+  
+- You can extend the abstraction and implementor independently.
+
+- You can hide the implementor interface details from the client as the client that uses the concrete abstract
+  class does not need to know about the interface.
