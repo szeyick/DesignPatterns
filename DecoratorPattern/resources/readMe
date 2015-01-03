@@ -1,0 +1,95 @@
+The Decorator Pattern -
+
+The decorator pattern allows you to add responsibilities to an object dynamically. It provides a 
+flexible way of providing additional functionality to an object without having to extend its functionality
+through subclassing.
+
+An example of a decorator pattern is when we wish to add borders or colours to a graphical component.
+
+A way to add different borders or colours is with inheritance, our graphical component can inherit
+from the border class or other property subclasses to provide these behaviours. This is not typically
+a good choice because the choice to add the border is static so that the client cannot control
+how and when the graphical component can drawn with and without a border.
+
+A decorator can be used in this instance where it is wraps the graphical component in it's own
+object which then adds the border to the graphical component. The decorator inherits the same interfaces
+of the graphical component it wants to decorate and forwards the method calls when the decorator is called
+onto the graphical component along with any border drawing or actions that it wishes to add. Decorators
+can be nested allowing unlimited responsibilities to be added to the graphical object.
+
+When to use -
+
+- A decorator pattern can be used when we want to add responsibilities to individual objects dynamically
+  without affecting other objects of the same type.
+  
+- A decorator pattern can be used when we want to add/remove responsibilities at run time.
+
+- A decorator pattern can be used when sub-classing an object results in too many interface extensions.
+
+Basic Structure - 
+
+1. Component
+
+- The component defines the interface that allows objects to have responsibilities added to them dynamically.
+
+2. Concrete Component
+
+- Is the object that can have additional responsibilities (borders, colour changes) added to it. Inherits the
+component interface.
+
+3. Decorator
+
+- Contains a reference to the concrete component and also implements the Component interface. The interface
+calls are generally forwarded onto the concrete component that it has a reference to.
+
+4. Concrete Decorator
+
+- Since it contains a reference to the concrete component, the concrete decorator can apply additional
+  responsibilities to the concrete component before it forwards the method calls onto the concrete
+  component.
+  
+Benefits and Drawbacks
+
+- A benefit is that it can provide more flexibility than inheritance as it can be applied to objects
+  during runtime. Decorators can be added/removed at runtime by adding/removing the component from it
+  at runtime. Multiple decorators can also be added to the same concrete component. 
+  
+- A drawback is that it can create lots of different little objects. Because decorators allow for
+ custom behaviours and responsibilities by adding more decorators, it can clutter the system if it
+ becomes too customisable.
+ 
+ - A drawback also is that the decorator must conform to the same interface of the component that it
+   decorates, if not then it has no way of forwarding the messages to the component.
+   
+Example -
+
+A classic example of a decorator pattern in use is the adding of colour properties to a graphical object. In
+this example, we will create some Shapes (Circle, Square, Rectangle) and decorate them by adding
+different colour properties.
+
+In this example, the basic structure will be
+
+1. Component (Interface)
+
+- The component interface will provide the method to draw the shape. 
+
+2. Concrete Component.
+
+- The concrete component will be the shape itself, when the draw method is called
+  it will simply draw itself.
+  
+3. Decorator
+
+- The decorator will inherit from the same component interface as the concrete component. It will
+  contain a reference to the Concrete Component as well, meaning that is also able to draw the
+  concrete component but can provide it's own behaviours or properties before doing so.
+  
+4. Concrete Decorator
+
+- The concrete decorator will be one that is called to perform the actions. It will decorate the shape
+  by applying some sort of colour and then passing the method call onto the concrete component.   
+  
+If you need to apply multiple decorators to the same component, it may be possible to extend the concrete
+decorator to contain a collection of decorators where they would be iterated through and called before
+the final message is passed onto the concrete component itself.
+
