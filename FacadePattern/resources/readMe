@@ -1,0 +1,73 @@
+Facade Pattern -
+
+The facade pattern provides a unified interface (a common interface) to client classes to access
+multiple sub-system components rather than having the client interface with the components directly.
+
+By using a facade, it reduces the number of dependencies between components in a system. 
+
+As an example, a facade can be a class that offers a client a single interface that accesses multiple
+components. As a client, they are not concerned as to how the component works, they simply want the 
+access to it.  
+
+When to use - 
+
+- A facade can be used if we want to provide simple access to a complex system. The facade can be viewed
+  as a simplified window into a complex system. This is usually enough visibility for the client, should
+  they require deeper access they still have the flexibility to do so.
+  
+- A facade can be used when there are a large number of dependencies between the client and its 
+  implementation classes. A facade can be introduced to decouple some of the dependencies.
+  
+- A facade can be used when you want to define an entry point into a subsystem. Components can be 
+  simplified by having them communicate with each other through other facades.
+  
+Basic Structure -
+
+1. Facade -
+
+- The facade delegates requests from a client to appropriate subsystem components.
+- The facade knows which subsystem components are responsible for each request.
+
+2. Subsystem Classes -
+
+- The subsystem classes implement the functionality that is to be called by the facade.
+- The subsystem classes respond to the calls from the facade.
+- The subsystem classes do not know about the facade.
+
+3. Client
+
+- The client communicates to the subsystem classes through the facade.
+- The client does not have access to the subsystem classes directly.
+
+Benefits and Drawbacks
+
+- A benefit of the facade pattern is that it hides the subsystem implementation from the client. This
+  is handy in large complex systems where the objective is to reduce the number of system dependencies.
+  
+- A benefit of the facade pattern is that it doesn't prevent the use of subsystem classes directly. The
+  facade pattern just provides a simpler interface.
+  
+Example -
+
+An example of a type of facade would be an operating system. The operating system operates as a facade
+as it provides a user access to a variety of programs such as the iTunes, Google Chrome and Microsoft
+Word. The client doesn't need to know exactly how the programs function just that it can get access
+to it through a single point of access, the operating system.
+
+In this example, the basic structure will be
+
+1. Facade -
+
+- The operating system acts as the facade and is a class that the client accesses.
+
+2. Subsystem Classes -
+
+- The subsystem classes comprise of iTunes, Google Chrome, Microsoft Word and whatever other programs
+  and operations the operating system will allow. 
+  
+3. Client -
+
+- The client is the user and accesses the programs through the facade (Operating Systems).  
+
+ 
+
