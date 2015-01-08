@@ -1,2 +1,96 @@
 Flyweight Pattern - 
 
+The flyweight pattern is used to reduce the number of objects that are created so that the memory
+footprint is reduced. 
+
+Caching and re-using of similar types of objects is the main aim of the flyweight pattern. New
+objects are only created when there is no similar object to be re-used. 
+
+The flyweight object can be re-used by multiple contexts by reloading the data into the object
+depending on the required context. They do not know about the context in which they are being used
+and are comprised of two main states, intrinsic and extrinsic.
+
+Intrinsic state is information stored within the flyweight that isn't shared. It needs to be 
+independent of the flyweights context to allow it to be shared.
+
+Extrinsic state is the state provided by the client that cannot be shared, it is context dependent. 
+
+The client is responsible for providing the extrinsic state to the flyweight when needed. 
+
+When to use -
+
+- A flyweight pattern can be used when an application uses a large number of objects
+- A flyweight pattern can be used when there is a high storage cost of creating more objects
+  due to the large number of objects that are required.
+- A flyweight pattern can be used when most of an objects state can be provided by the client (extrinsic)
+- A flyweight pattern can be used when a group of objects can be replaced by shared objects by removing
+  the extrinsic state.
+- A flyweight pattern can be used when the application doesn't need to know about the objects identity. This
+  is because flyweight objects are shared and comparisons will return true for conceptually similar objects.
+  
+Basic Structure -
+
+1. Flyweight -
+
+- Is an interface through which flyweights can receive and act on extrinsic state. 
+
+2. Concrete Flyweight -
+
+- Implements the Flyweight interface and adds storage for the intrinsic state. This object must
+  sharable. If the concrete flyweight itself stores any state, it needs to be independant of
+  the objects context.
+  
+- The intrinsic state is stored in the concerete flyweight.
+  
+3. UnsharedConcreteFlyweight
+
+- The flyweight interface allows objects to be shared but doesn't enforce it. The UnsharedConcreteFlyweight
+  can have ConcreteFlyweight objects as children.
+  
+4. Flyweight Factory
+
+- The factory creates and manages the flyweight objects.
+- The factory ensures that the flyweight objects are shared properly. When a client wants a flyweight
+  object, the factory provides an existing one or creates a new one.
+  
+5. Client
+
+- Maintains references to the flyweight
+- Provides the extrinsic state to the flyweight.
+- The client should ask the Flyweight Factory for ConcereteFlyweight objects and should not create it themselves. 
+
+Benefits and Drawbacks -
+
+- A drawback of the flyweight pattern is a possible performance impact that is associated with transferring
+  finding or computing extrinsic state. 
+  
+- A benefit of the flyweight pattern is that it saves space by reducing the number of objects that are created.
+
+- A benefit of the flyweight pattern is that it saves more space the more flyweights are shared. 
+
+The flyweight pattern is usually used with the Composite pattern to represent the structure in a heirachy.   
+
+Example - 
+
+A car factory can create many different types of cars. Cars also come in many different colours, however
+we don't need to create a different car for each different colour, in fact we can just paint the car
+a different colour. 
+
+In this example we have the following structure - (We do not use the UnsharedConcreteFlyweight)
+
+1. Vehicle (Flyweight)
+
+- The vehicle acts as the flyweight, it provides the interface for the ConcreteFlyweight to implement.
+
+2. Car (Concrete Flyweight)
+
+- The car implements the vehicle interface and stores the intrinsic and extrinsic state.
+
+3. CarFactory (Flyweight Factory)
+
+- The car factory creates the cars based on extrinsic information provided by the client.
+
+4. Client
+
+- The client is the program main, it maintains a reference to the factory and asks the factory
+  for the flyweight objects.
