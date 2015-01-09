@@ -1,17 +1,14 @@
 Proxy Pattern - (Surrogate) 
 
-The proxy pattern provides a placeholder for another object to control access to it.
+In the proxy pattern, the proxy acts as a placeholder for an object that we want. It takes the place
+of the actual object, and handles the instantiation of it when required. 
 
-A reason for controlling access to an object is to defer the full cost of its creation and 
-initialisation until we actually use it (similar to having an init() method). Sometimes we
-don't need an object until some point in the future, so by creating it at a later point we
-offset the cost of creating and its memory usage.
+A reason that we may want to control access to an object is because of the costs of creating and
+initialising the object (in the case that it is a very large object). For this reason, we may want
+to only create and initialise when we want to use it. 
 
-When we wish to defer the creation of an object we may still need a "placeholder" object to 
-take its place for the time being. This is when a proxy can be used.
-
-A proxy acts as a stand-in for the actual object that we want. It acts just as the actual
-object would and handles the instantiating when we require it.
+If we defer the creation of an object to a later point, we may still need a placeholder object in the
+mean time to take its place. This is when a proxy can be used. 
 
 When to use - 
 
@@ -28,4 +25,50 @@ Basic Structure -
 1. Proxy 
 
 - The proxy maintains a reference to the actual object.
+- The proxy provides an interface that is identical to the actual object so the proxy can be 
+  substituted for the real object.
+- The proxy controls access to the actual object and can be responsible for creating and deleting it.
+- The proxy forwards requests to the RealSubject when required.
 
+2. Subject (Interface)
+
+- The subject defines a common interface used by both the RealSubject and Proxy so the Proxy can be
+  used anywhere the RealSubject is expected.
+  
+3. RealSubject
+
+- The real subject defines the real object that the proxy represents.
+
+Benefits and Drawbacks - 
+
+- The proxy pattern allows you to "indirectly" use an object.
+- The proxy can hide the RealSubject from the client.
+- The proxy can provide controlled access to the RealSubject. 
+- The proxy can copy data to the RealSubject only if it is modified, thus it can act as a sort
+  of gateway to control what is changed/not changed.
+
+Example -
+
+To the client, the proxy looks and acts like the real thing, but it isn't. The proxy itself is the
+one that provides the RealSubject to the client.
+
+In this example we're going to creating mobile phones for shops. Because creating mobile phones is
+an expensive process, we'd much rather make fake plastic phones for a shop to put on display and only
+committ to providing them with the real thing when the orders come through.
+
+In this instance the structures are -
+
+1. Proxy
+
+- ProxyPhone is the proxy class to act as the "real" phone to reduce the number of RealSubject phones
+  that we create. We only create the RealSubject phone when required. 
+
+2. Subject (Interface)
+
+- We will create an IPhone interface that is the common interface shared between the Proxy and RealSubject.
+ 
+3. RealSubject
+
+- Phone is the real subject that implements the Subject interface. To the client, there is no difference
+  between the Proxy and RealSubject. Only when it is specifically requested will a RealSubject phone
+  be provided.
