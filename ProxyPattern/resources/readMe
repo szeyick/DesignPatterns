@@ -1,0 +1,31 @@
+Proxy Pattern - (Surrogate) 
+
+The proxy pattern provides a placeholder for another object to control access to it.
+
+A reason for controlling access to an object is to defer the full cost of its creation and 
+initialisation until we actually use it (similar to having an init() method). Sometimes we
+don't need an object until some point in the future, so by creating it at a later point we
+offset the cost of creating and its memory usage.
+
+When we wish to defer the creation of an object we may still need a "placeholder" object to 
+take its place for the time being. This is when a proxy can be used.
+
+A proxy acts as a stand-in for the actual object that we want. It acts just as the actual
+object would and handles the instantiating when we require it.
+
+When to use - 
+
+- A proxy can be used when there is a need for a more sophisticated reference to an object 
+  rather than a simple pointer. 
+  
+- A proxy can be used to create expensive objects on demand.
+
+- A proxy can be used when we want to control access to the original object. This can be useful
+  if the original object has access rights.
+  
+Basic Structure - 
+
+1. Proxy 
+
+- The proxy maintains a reference to the actual object.
+
