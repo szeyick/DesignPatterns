@@ -1,0 +1,41 @@
+Structural Pattern Notes
+
+There are many similarities between the different structural patterns. 
+
+Adapter Pattern vs Bridge Pattern
+
+Both patterns provide a level of flexibility by providing access to another object. In addition to
+that, they also pass on messages from the client to another object.
+
+The difference between the patterns is in their usage. The adapter pattern focuses on trying to 
+resolve incompatibilities between two existing interfaces, like a real life travel adapter would by
+trying to connect one socket to another. It tries to make two incompatible interfaces work together
+without having to adjust either one of them. 
+
+The bridge pattern attempts to bridge an abstraction and its implementations. It provides an interface
+to clients and allows you to change the classes that implement it.
+
+The adapter pattern makes things work after they're designed as a way to make things fit together 
+without the need for replicating code, whereas the bridge pattern makes things work before they are
+designed as you need to factor it in when designing the bridge interface.
+
+Composite Pattern vs Decorator vs Proxy
+
+The decorator pattern is designed to allow you to add additional responsibilities to an object
+without having to subclassing the object. 
+
+The composite pattern is designed to allow you to treat multiple objects and singular objects as
+one. In the composite pattern, multiple objects are just a bunch of singular objects added together
+that share the same interface.
+
+The proxy pattern holds a reference to another object, and passes requests along from the client to
+the other object. The intent of the proxy pattern is to act as the same object as it is representing
+as it may be inefficient or unwanted to create the real subject object immediately. 
+
+In the proxy pattern, the proxy itself determines whether the client has access to the real subject
+object or not.
+
+In the decorator pattern, the component provides part of the functionality and the decorator(s) can
+provide additional functionality if required. It also can provide/remove functionality to a component
+at run time by adding/removing decorators.  
+
