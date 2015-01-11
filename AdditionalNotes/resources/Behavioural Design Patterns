@@ -1,0 +1,9 @@
+Behavioural Design Patterns
+
+These design patterns are concerned with algorithms and how we assign responsibilities between
+objects. Along with the patterns of the objects and classes, it is also responsible for describing
+how objects communicate with each other. 
+
+Behavioural class patterns use inheritence to distribute behaviour between classes.
+
+Behavioural object patterns use object composition to know about each other. 

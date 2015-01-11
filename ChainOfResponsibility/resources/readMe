@@ -1,0 +1,86 @@
+Chain of Responsibility -
+
+The idea behind the chain of responsibility pattern is to de-couple the sender and receiver by having
+an intermediary object(s) to handle the request. Through chaining, we can pass the request along from
+the client to the appropriate receiver to handle the request. 
+
+The pattern functions as a sort of "pass the parcel", the sender passes the parcel to a number of 
+different objects until it reaches the correct recipient.
+
+The objects that send the request have no knowledge of who will handle the request and vice versa. For
+the client, it blindly sends the request on expecting someone to respond to it, whereas the recipient
+only knows to handle a particular type of request but doesn't care where it comes from. 
+
+It can sometimes be used with the Composite Pattern because its recursive structure makes it suitable
+to pass messages along to parents (successors).
+
+When to use -
+
+- Use the chain of responsibility when more than one object can handle a request and the handler
+  of that request isn't known beforehand. 
+  
+- Use the chain of responsibility when you want to send a request without having to specify the
+  receiver explicitly. Generically send a request off and it is received and handled by "someone"
+  
+Basic Structure - 
+
+1. Handler 
+
+- The handler defines the interface for handling requests.
+- The handler may also implement a "successor" link to say that if they don't handle the request, then
+  pass it on to the next one in the chain.
+  
+2. Concrete Handler
+
+- The concrete handler handles the request it is responsible for.
+- The concrete handler can access its "successor" so it can pass the request on.
+- The concrete handler handles the request, if it is the one that is responsible for handle the request
+  it will consume the event, otherwise it will pass it on.
+  
+3. Client
+
+- The client is the one who creates the request to a ConcreteHandler.
+
+Benefits and Drawbacks -
+
+- The chain of responsibility pattern decouples the sending class from the receiving class. The sender
+  can send and forget, and only deal with the response (processed/not processed).
+  
+- The chain of responsibility pattern provides additional flexibility by distributing the responsibilities
+  across the handlers. You can add additional responsibilities to the handlers by adding/removing from
+  the chain at run-time.
+  
+- The drawback of it is that there is no guarantee of a recipient of a sent message.
+
+Example -
+
+A common usage for the chain of responsibility pattern would be to handle user events such as mouse 
+clicks (left, right, middle click). In this scenario, each ConcreteHandler class will be responsible 
+for handling a particular type of mouse click. 
+
+When the Client (Mouse) initially sends the mouse click event, it will be passed onto the first handler.
+
+The handler will determine whether it is responsible for processing the particular mouse event. If it
+isn't responsible, it will pass it onto the next handler until a suitable one is found. Once it is found
+the event will be consumed and the chain stopped. If it is not handled, then a suitable return will be
+provided to the client. 
+
+In this example, the structure would be -
+
+1. Handler 
+
+- The handler will provide a method to the next handler in the chain.
+- The handler will provide a method to handle the event.
+
+2. Concrete Handler
+
+- The concrete handler will implement the handler interface
+- We have a concrete handler for each type of mouse click (left, right, middle) that
+  handles a particular type of event.
+- The concrete handler will contain a reference to the next one. 
+
+3. Client
+
+- The client is responsible for creating the mouse click event. 
+  
+3.  
