@@ -1,0 +1,95 @@
+Command Pattern - 
+
+The idea behind the Command Pattern is to encapsulate a client request as an object. In other words
+this means to create an object that can perform tasks on behalf someone. By creating this request 
+object, it allows the creator/caller of this object to create different types of requests.
+
+The Command Pattern functions like the Action pattern, where the Action is the request object that
+is invoked by a creator/caller to perform a bunch of different things.
+
+Furthermore, the Command Pattern allows the creator/caller to perform requests without knowing how
+the request works or who receives it. The creator/caller is only concerned with being able to call
+the Command. 
+
+The request in this pattern is turned into an object. The request (Command) object can be stored, passed
+around and used at any time like any other object. By having the request as an object, it decouples the
+sender of the request and its recipient.  
+
+When to use - 
+
+- The command pattern can be used when we want to set a context to an action to perform. By being able
+  to store these actions/commands we can store them away and use them at a later stage.
+  
+- The command pattern can be used on the request object at different times. The command object can
+  have a lifetime that is independent of the original request object. 
+  
+- The command pattern can be used to revert/undo a command. The command object contains methods to undo.
+
+- The command pattern can be used to reload and store operations in case of a crash.
+
+Basic Structure - 
+
+1. Command
+
+- Functions as the interface that provides the method calls to execute an operation.
+
+2. Concrete Command
+
+- Executes actions on the receiver on behalf of the invoker.
+- Knows about the receiver. 
+
+3. Client
+
+- Creates the Concrete Command object and assigns its receiving object. 
+
+4. Invoker
+
+- Is the object that asks the Concrete Command to carry out the request (execute).
+- Contains a reference to the Concrete Command.
+
+5. Receiver
+
+- Is the one that performs the action when told to by the Concrete Command.
+- Any class can be the receiver. 
+
+Benefits and Drawbacks -
+
+- A benefit of the command pattern is that it decouples the invoker from the receiver.
+- A benefit of the command pattern is that the commands are objects themselves and can be manipulated
+  like any other object could.
+- A benefit of the command pattern is that it can be assembled into a composite command. This means that
+  you can build a command/commands by applying the command pattern.
+
+- A drawback of the command pattern is that it can do too much, contain too much logic to execute the command.
+
+Example - 
+
+An example of the Command Pattern would be the action of depositing and withdrawing money from the bank. The
+command here would be the withdraw/deposit actions. 
+
+In this example, the structure would be -
+
+1. Command
+
+- The interface would the BankingAction. This interface will contain the execute method that all
+  inheriting ConcreteCommands will be required to implement.
+  
+2. ConcreteCommand
+
+- The ConcreteCommands would be the Withdraw and Deposit Actions. The provide the different types of
+  commands that we can do when we're at the bank.
+  
+3. Client (Program Main).
+
+- The client creates the Withdraw and Deposit Command objects. 
+
+4. Invoker
+
+- The invoker would be the customer, which would be us. The customer utilises the Withdraw
+  and Deposit Commands.
+
+5. Receiver
+
+- The Bank acts as the receiver in this example, processing the request from the ConcreteCommand. The
+  bank contains the knowledge to process the request but contains no knowledge of where the request
+  came from. 
