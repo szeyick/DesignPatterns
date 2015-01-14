@@ -1,2 +1,110 @@
 The Interpreter Pattern
 
+The pattern provides a way to evaluate a language grammar or expression. It does so by implementing
+an expression interface, which we tell to interpret a particular context ("thing"). 
+
+If we are given a language, we must define a way to represent the grammar. In addition we must also
+provide an interpreter which can "translate" the context to make sure that it is part of the language.
+
+Usually if we encounter a re-occuring problem, we might be able to express the problem by creating
+a language for it. When a problem arises, we can use the interpreter to determine if it is the
+same problem, it is seen as the same problem if it fits within the language.
+
+An example of the interpreter pattern is regular expressions. The language could be English, where it
+follows the English grammar structure, the expression itself is the rule-set. We parse in a word (context)
+to the regular expression, and the interpreter checks our word against the rules of the language to see
+if it is a valid word. 
+
+When to use -
+
+- The interpreter pattern can be used when there is a language to interpret and you can represent
+  statements in the language as a abstract syntax trees.
+  
+- The interpreter pattern can be used on simple languages, for complex languages a parser might be
+  a better alternative.
+  
+- The interpreter pattern can be used if we're not concerned about efficiency. 
+
+Basic Structure - 
+
+1. AbstractExpression (Regular Expression)
+
+- Provides an abstract Interpret operation that is common to all nodes in the abstract syntax tree.
+
+2. Terminal Expression (Literal Expression)
+
+- Implements the AbstractExpression.
+- An instance of the terminal expression is required for every symbol in the language. In other words
+  if we were re-creating the English language, we would require a terminal expression for every single
+  word in the English dictionary. 
+
+- Its Interpret method is to ensure that the incoming context is part of the language. In our English
+  language example, this means that when Interpret is called, it makes sure that the incoming word
+  at least matches a word in our language.
+
+3. Nonterminal Expression (AlternationExpression, RepetitionExpression, SequenceExpressions)
+
+- A nonterminal expression defines the rules in the language/grammar.
+- It maintains a set of AbstractExpressions objects which defines the language to validate against.
+
+- Its Interpret method is essentially a rule checker that makes sure that the incoming context (word)
+  not only is part of the language but also adheres to some specific rule implemented by the class.
+
+4. Context
+
+- The context here contains information to pass to the interpreter. This can mean that the context contains
+  the word that we want to check to make sure that it is English.
+
+5. Client
+
+- The client creates the syntax tree, or builds the rules and grammar of the language.
+- The abstract syntax tree is created from instances of non-terminal and terminal expression classes.
+- The client calls the interpret method to check that a context is part of the language.
+
+Benefits and Drawbacks -
+
+- A benefit of the Interpreter Pattern is that it is easy to make modifications to the grammar. This is
+  because the pattern uses classes to represent the grammar and rules, which can be added/removed, or
+  changed. To update the rules, we just modify the interpret method in the NonTerminalExpression class.
+  
+- A benefit of the Interpreter Pattern is that it makes it easy to change the grammar. We can add more
+  to the grammar of the language by creating more TerminalExpression objects to set in the NonTerminalExpression
+  classes.
+
+- A drawback of the Interpreter Pattern is that it can be quite hard to to maintain a set of complex
+  grammars. This is because there has to be at least 1 class for each rule in the grammar, this means
+  the more rules a grammar has, the more classes it has to maintain. In addition, this is also the same
+  for the symbols of the language, since we also have 1 class per symbol. 
+
+Example -
+
+In this example we are going to build an interpreter that uses logical AND and OR to verify if
+a given name is male or not or whether a person is female and married.
+
+For the example, we have the corresponding structures -
+
+1. AbstractExpression (Interface)
+
+- Is the expression interface that provides the interpret method.
+
+2. Terminal Expression
+
+- Implements the AbstractExpression that builds the symbols (words) of the language.
+
+3. Nonterminal Expression
+
+- Are the rule classes of the grammar. They take the TerminalExpressions to set up the language
+  and its interpret methods will verify that the context is part of the language and also
+  follows the rules of the class.
+
+4. Context
+
+- The context in this example will be the words/conditions that we want to validate. 
+- The context in this example will be to ask the interpreter whether a name is male or whether a
+  particular female is married.
+
+5. Client
+
+- The client builds the expressions.
+- The client creates or sets the context.
+- The client validates the context by calling the expressions interpret method.
