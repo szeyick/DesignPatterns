@@ -3,3 +3,80 @@ The Iterator Pattern -
 The iterator provides a way to access the elements of an aggregate object sequentially without
 exposing its underlying representation.
 
+An aggregate object such as a list should give you a way to access the elements within it without 
+exposing the internal structure of the aggregate. 
+
+It allows you to perform additional operations by iterating through the structure differently.
+
+The key idea behind the iterator pattern is that it takes the responsibility for accessing and 
+traversal out of a list object and place it into an iterator object.
+
+The iterator class defines an interface for accessing the list elements. An iterator object is 
+responsible for keeping track of the current element, so it knows which element it has traversed
+already. 
+
+Separating the traversal mechanism from the List object allows us to define different iterators to
+do different things to the List objects. However this creates a coupling between the iterator
+and list object. 
+
+When to use -
+
+- The iterator pattern can be used to access an aggregate (e.g - list) objects contents without 
+  exposing its internal structure.
+   
+- The iterator pattern can be used when we want to traverse the aggregate objects in different
+  ways.
+  
+- The iterator pattern can be used when we want to traverse different aggregate objects, we can 
+  do that by providing a uniform interface that the iterators implement.
+  
+Basic Structure -
+
+1. Iterator (Interface) -
+
+- The iterator provides an interface for accessing and traversing elements in the aggregate.
+
+2. Concrete Iterator -
+
+- The concrete iterator implements the iterator interface.
+- The concrete iterator keeps track of the current position of the traversal of the aggregate object.
+
+3. Aggregate
+
+-  The aggregate defines an interface for creating an iterator object.
+
+4. Concrete Aggregate
+
+- The concrete aggregate returns an instance of the concrete iterator.
+
+Benefits and Drawbacks -
+
+- A benefit of the iterator pattern is that it supports different traversals of the aggregate object
+  by using different concrete iterators on the same aggregate object.
+  
+- A benefit of the iterator pattern is that it allows you to have multiple traversals going at the same
+  time since it keeps track of its own traversal state.
+  
+Example - 
+
+An example of the iterator pattern is to use it on traversing a list. In this example we'll be traversing
+a list of names.
+
+In the example we'll have the following structures -
+
+1. Iterator
+
+- The iterator interface provides client access to access the aggregate object and to traverse it.
+
+2. Concrete Iterator
+
+- The name iterator implements the interface to traverse through the aggregate.
+
+3. Aggregate
+
+- The aggregate provides the interface to return the iterator.
+
+4. Concrete Aggregate
+
+- The concrete aggregate is the container that creates and provides the iterator.
+- The concrete aggregate also stores the aggregate object containing the data.   
