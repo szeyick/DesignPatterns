@@ -1,0 +1,22 @@
+The Mediator Pattern -
+
+The mediator pattern involves an object that encapsulates how a set of other objects interact. The
+pattern promotes loose coupling by keeping objects from referring to each other explicitly and
+allows you to vary their interactions independently.
+
+In OO design we are taught to distribute behaviour across objects. Sometimes this can create dependencies
+between objects and in the worst case, results in all objects knowing about every other object since
+you create a explicit link between the two.
+
+Breaking down a system or functionality into many different objects encourages object reuse however
+possible dependencies between the objects can result in a tighter than expected coupling. The tighter
+the coupling the harder it may be to extend functionality since it might result in changes across 
+many different objects.
+
+The mediator object in the pattern is responsible for controlling and coordinating interactions of a
+group of objects. It keeps objects in the group from knowing about each other and acts as the 
+intermediary. The objects of the group know about the mediator but nothing of each other.
+
+The objects being interacted tell the mediator that it has been changed, the mediator then gets the
+change list from the object and passes it onto somewhere else. The mediator acts as a sort of director
+that tells things where to go.
