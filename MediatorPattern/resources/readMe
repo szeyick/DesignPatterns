@@ -1,5 +1,8 @@
 The Mediator Pattern -
 
+The mediator pattern is used to reduce the complexity of communicating between objects by managing
+the communications on behalf of the objects themselves. 
+
 The mediator pattern involves an object that encapsulates how a set of other objects interact. The
 pattern promotes loose coupling by keeping objects from referring to each other explicitly and
 allows you to vary their interactions independently.
@@ -20,3 +23,63 @@ intermediary. The objects of the group know about the mediator but nothing of ea
 The objects being interacted tell the mediator that it has been changed, the mediator then gets the
 change list from the object and passes it onto somewhere else. The mediator acts as a sort of director
 that tells things where to go.
+
+When to use -
+
+- The mediator pattern can be used when we have a set of objects that wish to communicate.
+- The mediator pattern can be used to resolve object dependencies so we can re-use objects since we
+  eliminate some of the dependencies.
+
+Basic Structure -
+
+1. Mediator
+
+- Defines the interface for communicating with Colleague objects.
+
+2. ConcreteMediator
+
+- Implements the cooperative behaviour by coordinating Colleague objects.
+- The ConcreteMediator knows about and maintains the Colleague objects.
+- The ConcreteMediator routes requests between the colleague objects. 
+
+3. Colleague Classes
+
+- Each colleague class knows about the mediator.
+- Each colleague object sends messages to the mediator instead of sending it to a responding object.
+- Each colleague object sends and receives messages to/from the mediator.
+
+Benefits and Drawbacks -
+
+- A benefit of the mediator pattern is that it reduces subclassing. Because the mediator class handles
+  the routing of communications, it reduces the need for the colleague classes to do so.
+  
+- A benefit of the mediator pattern is that it also de-couples the colleagues. Because they communicate
+  with each other through the mediator, they do not need to know about each other meaning that they
+  are loosly coupled.
+  
+- A benefit of the mediator pattern is that it simplifies how the colleague objects communicate with
+  each other. Because the mediator handles the communications, it reduces possible many-many relationships
+  between the various colleague objects to a one-many with the mediator.
+  
+- A benefit of the mediator pattern is that object communications are unified. It allows the mediator
+  to concentrate on how the objects communicate and allows the colleague objects to focus on their
+  behaviour.
+  
+Example -
+
+A good example of the mediator pattern in use would be a Call Centre. In this example the mediator
+would be the call center itself that acts as the object that re-routes a callers enquiries to the
+correct department.
+
+In the example we'll have the following structures -
+
+1. Call Centre (Mediator) -
+
+- The Call Centre functions as the mediator object.
+- The Call Centre knows about the User and Departments, meaning that it knows where to re-route the
+  User enquiries to the correct department. 
+
+2. User/Department
+  
+- The User/Department objects function as the Colleague objects in this example. They have specific
+  functions, but do not know about each other.
