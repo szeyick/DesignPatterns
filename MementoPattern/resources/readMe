@@ -1,0 +1,26 @@
+The Memento Pattern -
+
+The purpose of the memento pattern is to capture and externalise an objects internal state without
+violating encapsulation so that we can restore the objects state at a later time. 
+
+Sometimes we need to record the internal state of an object. It is neccessary if we want to allow the
+user to be able to undo changes or recover from errors. We need to save the internal state of the 
+object somewhere so we can use it to restore to the previous state if neccessary.
+
+We cannot usually do this because objects encapsulate/hide their data from other objects so it makes
+it impossible to just save it externally. The easiest would be to just expose the internal state of
+the object, but that would violate encapsulation.
+
+Saving an objects state and then restoring it on an undo operation, may not behave correctly since
+we may only save the state of one object and not all of them, therefore we cannot guarantee that
+the objects will be the same.
+
+It functions like the refreshApply pattern, where refreshing the object will restore it to its previous
+state.
+
+In the pattern, the memento is an object that stores a snapshot of the internal state of another object.
+The other object in this case is called the originator.
+
+When we undo, we request a momento from the originator so we can restore the previous state. The originator
+provides the memento with information of its current state. Only the originator can store and retrieve
+information from the memento. Other objects cannot see the memento of the originator. 
