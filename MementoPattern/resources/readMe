@@ -86,3 +86,28 @@ Benefits and Drawbacks -
   
 Example - 
 
+An example of the memento pattern is any situation where you might want to undo a change or revert to
+a previous state. An example of this would be online shopping, where you would select a particular item
+and then choose its colour, you may choose blue initially but then change your mind to green. 
+
+However once you've seen how it looks in green, you may want to change it back to what it was previously.
+
+In this example, we'll have the following structures
+
+1. Memento
+
+- The object that stores the previous colour data before we made the change.
+- Upon restoration, the originator asks the memento for the previous state.
+
+2. Originator
+
+- The originator works as the product object. In this example, we'll say that the Originator is a
+  t-shirt that we can change the colours (state) of.
+  
+- The originator creates the memento which allows us to save the previous colour of the t-shirt if we
+  choose to change it from its original colour.
+  
+3. Caretaker
+
+- The caretaker manages the memento objects, stores it on behalf of the originator so we can restore it
+  at a future date. 
