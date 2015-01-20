@@ -24,3 +24,65 @@ The other object in this case is called the originator.
 When we undo, we request a momento from the originator so we can restore the previous state. The originator
 provides the memento with information of its current state. Only the originator can store and retrieve
 information from the memento. Other objects cannot see the memento of the originator. 
+
+When to use -
+
+- The memento pattern can be used when we want to take a snapshot of an objects state that we might
+  want to restore at a later date.
+  
+- The memento pattern can be used when we want to know something about the internal state of an object
+  without breaking the rules of encapsulation.
+  
+Basic Structure -
+
+1. Memento
+
+- The memento stores the state of the originator object. It stores as much or as little of the originators
+  state, this is driven by the originator. In other words, this means that the originator tells the mementor
+  as much about itself as it will like to let on.
+  
+- The memento only grants access to the originator. It inherits two interfaces, a narrow and wide interface.
+  The caretaker sees the narrow interface, where it only allows the memento to be passed between other objects,
+  where the wide interface, seen by the originator allows it to access all the data neccessary to save/restore
+  itself.
+  
+- The memento is only allowed to be modified by its creator.
+
+2. Originator
+
+- The originator creates the memento with a snapshot of its internal state.
+
+- The originator uses the memento to restore its internal state.
+
+- The originator functions as a model.
+
+- The originator is the only one that can save and restore its internal state from a memento. 
+
+3. Caretaker
+
+- The caretaker is responsible for keeping the memento safe.
+
+- The caretaker never looks at or changes anything in the memento. 
+
+- The caretaker requests a memento from the originator and holds it for them. It also passes it back
+  to the originator if it wants to restore state.
+  
+Benefits and Drawbacks -
+
+- A benefit of the memento pattern is that it preserves the rules of encapsulation. The originator
+  object does not expose its internal state to other objects. However the memento is kept outside
+  of the originator, however since noone else can access its internal state, rules of encapsulation
+  are retained.
+  
+- A benefit of the memento pattern is that it simplifies the originator. This is because the client asks
+  the originator for a memento rather than having the originator manage its own state.
+  
+- A drawback of the memento pattern is that it can be memory expensive. This especially occurs if the
+  memento is required to store lots of data to maintain state. Passing the memento's around can also
+  be expensive if they're doing it a lot.
+  
+- A drawback of the memento pattern is that there may be additional costs for deleting memento's. This
+  responsibility is on the caretaker.
+  
+Example - 
+
