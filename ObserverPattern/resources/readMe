@@ -1,0 +1,95 @@
+The Observer Pattern -
+
+The observer pattern defines a one to many dependency between objects so that when one object changes
+its state, all of the dependent objects are notified/updated.
+
+In other words, the observer pattern employs a listening mechanism. A group of objects listen to a single
+object, so that when that one object changes, the group is notified.
+
+The pattern describes the relationship that objects share with each other. There are two key components
+of the pattern, the subject and observer. The subject can have any number of observers, and the observers
+are notified when the subject changes. The observer queries the subject to see what has changed.
+
+This pattern is also known as the publish-subscribe pattern, where the observers subscribe to the subject,
+who then publishes information back to the observers.
+
+When to use -
+
+- The observer pattern can be used when we have two separate objects, where one is dependent on the
+  other and we don't want to create a tightly coupled relationship.
+  
+- The observer pattern can be used when a group of objects rely on the state of a single object.
+
+- The observer pattern can be used when an object wants to notify other objects but is not concerned
+  as to what the objects are and how they use the changed state.
+  
+Basic Structure -
+
+1. Subject
+
+- The subject is the single object that observers want to be notified when it changes.
+- The subject knows about its observers, and can have any number of them.
+- The subject provides an interface for registering/deregistering observers from observing the subject.
+
+2. Observer
+
+- The observer registers itself to the subject so it can be notified of state changes from the subject.
+
+3. Concrete Subject
+
+- The concrete subject implements the subject interface and stores data.
+- The concrete subject notifies its observers of state changes.
+- The concrete subject notifies its observers whenever it changes elements of its state that its 
+  dependents require to know about
+
+4. Concrete Observer
+
+- The concrete observer maintains a reference to the subject object.
+- The concrete observer stores state that is uses from the subject.
+- The observer implements the provided interface from the subject so that it can be notified of changes.
+
+Benefits and Drawbacks -
+
+- A benefit of the observer pattern is that we abstract the coupling between the observer and subject. The
+  subject knows of all its observers, but doesn't know specifically what the concrete implementation of those
+  observers are. 
+  
+- A benefit of the observer pattern is that the subject can notify all of its observers without actually knowing
+  knowing its recipient. It just sends out a broadcast that goes to all of its observers.
+  
+- A drawback of the observer pattern is that because the subject knows nothing of its observers and blindly
+  notifies them all when it wants to, this means that even though an observer wants to be notified of state
+  changes in the subject, it may not neccessarily be interested in the particular state that changed but will
+  be notified anyway. A solution to this is to implement a mechanism that employs a fine grained observer that
+  can listen to particular attributes of the subject and only be notified when those change.
+  
+- A drawback of the observer pattern is that it can be costly for an observer to find out what has actually
+  changed when it is notified. If the observers also change the subject, it may have the unwanted consequence
+  of triggering the notifications over and over again. This problem can be magnified if the observer does not
+  send a list of what has changed in its update and just says that it has changed.
+  
+Example -
+
+A simple example of the observer pattern is a Twitter client. Users (Observers) can subscribe (follow) to
+a particular Celebrity (Subject) and be notified whenever they send out a new tweet. In this example we are
+simplifying the Twitter client, so that Users cannot subscribe to each other and only to a Celebrity.
+
+In the example we'll have the following structures -
+
+1. ICelebrity (Subject)
+
+- The IUser defines the interface that all observers are required to implement if they want to be notified
+  of changes in the subject.
+  
+2. User (Observer)
+
+- The abstract interface for a User.
+- The User contains a reference to the Celebrity that it is observing.
+
+3. Celebrity (Concrete Subject)
+
+- The Celebrity stores all the Users that it wants to notify whenever they send a new Tweet.
+
+4. IndividualUser (Concrete Observer)
+
+- The individual instances of the concrete observer. 
