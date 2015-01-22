@@ -1,0 +1,76 @@
+The State Pattern -
+
+The pattern allows an object to change its behaviour when its internal state changes. 
+
+In this pattern, we create various objects that represent different states and a context object whose
+behaviour varies depending on the current state object it contains.
+
+When to use -
+
+- The state pattern can be used if an objects behaviour depends on its state. In addition the pattern
+  is useful if behaviour can change at run time.
+
+- The state pattern can be used if we have large conditional statements in an object. If we have many
+  conditional statements in a method, we can extract each of the conditional statements into its own
+  class. This allows us to treat each statement as an object (state).
+
+Basic Structure -
+
+1. Context
+
+- The context is the main access point for the client, the client should not access the state directly.
+- The context maintains a reference to a concrete state subclass which represents the current state of the context.
+- The context delegates any state specific behaviour (actions) to the concrete state subclass. It calls methods on the state
+- The context can pass itself as an argument to the state, allowing the state access to the client if neccessary.
+
+2. State
+
+- The state defines what the implementing subclasses should do.
+- The state interface is how the context references the various state subclasses.
+- The state interface can contain a method for passing in the context object.
+
+  
+3. Concrete State subclasses
+
+- The concrete state subclass implements the state interface.
+- The concrete state subclass implements specific behaviour for its state.
+
+Benefits and Drawbacks
+
+- A benefit of the state pattern is that all behaviour for a particular state is extracted into its
+  own specific concrete state subclass. As each state is its own object, it is easy to create new
+  states as we only need to implement the interface.
+
+- A benefit of the state pattern is that it can reduce the amount of conditional statement code as it
+  gets extracted into objects.
+  
+- A benefit of the state pattern is that state objects can be shared and re-used. It does not belong to 
+  a specific implementation in any class therefore they can be created many times if neccessary. 
+
+- A drawback of the state pattern is that it can result in many different concrete state subclasses since
+  we create objects for every state rather than having it within a conditional statement within a class.
+  
+Example -
+
+An example of the state pattern would be a traffic light. In this system, we will have the three states that
+make up a traffic light, Stop (Red Light), Go (Green Light) and Amber (Prepare to Stop). The context object
+holds the current state of the traffic light (which light is showing). 
+
+The client passes the context into the state to configure the context (changing the light colours)
+
+In this example we have the following structures -
+
+1. Context
+
+- The context contains the current traffic light colour. We can change the light colour by assigning it a new state.
+
+2. State
+
+- The state interface defines a common action that its subclasses must implement.
+- The state interface will contain a method allowing the state to access the context.
+
+3. Concrete State Subclasses
+
+- The concrete state subclass implements the state interface.
+- The concrete state subclass will be represented by separate classes for Go, Stop, Prepare to Stop.
+- The concrete state subclass will implement the expected behaviour of the traffic light in each of its states.
