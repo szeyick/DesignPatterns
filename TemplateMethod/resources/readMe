@@ -1,0 +1,6 @@
+Template Method
+
+The template method requires a skeleton of an algorithm to be defined where it defers some steps
+to its subclasses. By deferring some behaviour to the subclass, it allows certain steps of an
+algorithm to be changed without changing the structure of the algorithm.
+
