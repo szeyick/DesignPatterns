@@ -1,0 +1,86 @@
+Strategy Pattern -
+
+The strategy pattern involves creating a family of algorithms as individual classes to make them
+interchangable.
+
+Sometimes we may only want to use certain algorithms at certain times, during other times we may want
+to switch to a different algorithm. By separating possible algorithms into individual classes, it allows
+us to apply different algorithms when the needs of a class changes.
+
+Applying different strategies (algorithms) to an object, allows us to change the execution and behaviour
+of that class. 
+
+When to use -
+
+- The strategy pattern can be used when a group of classes only differ by their behaviour. Instead of creating
+  individual subclasses to suit each behaviour, we can extract the behaviour into individual algorithm classes
+  and configure the class to use the appropriate algorithm when needed.
+
+- The strategy pattern can be used when you want to interchange possible algorithms.
+
+- The strategy pattern can be used when we have an algorithm that uses data that the client shouldn't know 
+  about. The pattern can be used to encapsulate the data from the client.
+
+Basic Structure -
+
+1. Strategy 
+
+- The strategy declares an interface that is common to all supported algorithms. 
+
+2. Concrete Strategy
+
+- The concrete strategy implements the strategy interface, and the algorithm.
+
+3. Context
+
+- The context is configured to hold a concrete strategy.
+- The context maintains a reference to the current concrete strategy.
+- The context may contain methods to allow the strategy objects to access its data.
+- The context forwards requests from the client to its concrete strategy.
+
+Benefits and Drawbacks
+
+- A benefit of the strategy pattern is that we can switch out concrete strategy algorithms to allow the
+  context to be configured for different purposes.
+  
+- A benefit of the strategy pattern is that the algorithms can be re-used since they are separated from
+  the context.
+  
+- A benefit of the strategy pattern is that it can reduce the size of the context classes. In addition to 
+  that, it reduces the number of conditional statements inside a class if the condition statements define
+  different strategy algorithms to use.
+  
+- A benefit of the strategy pattern is that it allows you to choose from a range of algorithms to solve a
+  particular problem. This can be achieved because we assign the concrete strategy to the context.
+  
+- A drawback of the strategy pattern is that the client must know about the different strategies and
+  what they do before they assign it to the context. 
+  
+- A drawback of the strategy pattern is that it all concrete strategies must inherit the strategy interface. 
+  This means that all concrete strategies must implement all the interface methods irrespective of how
+  easy or complex the algorithm is.
+  
+- A drawback of the strategy pattern is that because we separate the algorithms into objects, we can increase
+  the number of objects that are created.
+  
+Example - 
+
+An example of the strategy pattern in use would be in a calculator. In a calculator we pass in two numbers
+and perform a particular operation on it (add, subtract, multiply). Depending on the operation that we choose
+it alters the output.
+
+In this example we have the following structures -
+
+1. Operation (Strategy)
+
+- The operation interface defines the behaviours that the concrete stratgy objects will need to implement.
+
+2. Concrete Strategy
+
+- The concrete strategy would be the operations, add, subtract, multiply and implement their individual algorithms
+  on the numbers passed in.
+  
+3. Context
+
+- The context functions as the area that performs the calculations.
+- The context holds the current concrete strategy to use to invoke its behaviour on the passed in numbers.
