@@ -1,6 +1,63 @@
 Template Method
 
-The template method requires a skeleton of an algorithm to be defined where it defers some steps
-to its subclasses. By deferring some behaviour to the subclass, it allows certain steps of an
-algorithm to be changed without changing the structure of the algorithm.
+The template method is essentially any algorithm implemented in an abstract class where it has
+additional abstract methods that require the implementing subclasses to provide with attributes or
+specific behaviour for the algorithm to complete. 
+
+The abstract class defines the skeleton, which is the template and has its sub-classes fill in the
+gaps where it is required.
+
+By deferring some behaviour to its subclasses, it allows certain steps of an algorithm to be changed
+without changing the structure of the algorithm. 
+
+When to use -
+
+- The template method can be used when we have parts of an algorithm that do not change, but the parts
+  that do change can be delegated to subclasses to provide.
+  
+- The template method can be used when you want to control subclasses. Because the template method
+  only delegates specific portions of an algorithm to be provided by a subclass, it controls to an
+  extent what a subclass can do.
+  
+Basic Structure -
+
+1. AbstractClass
+
+- The abstract class defines the methods that the concrete subclasses implement.
+- The abstract class implements a template method which is the skeleton of the algorithm. It calls the
+  methods it defines to retrieve behaviour or attributes from its subclasses to feed into the algorithm.
+  
+2. Concrete Subclass
+
+- The concrete subclass implements the methods defined in the abstract class to feed the required 
+  behaviour to the abstract class.
+
+- The concrete subclass relies on the abstract class  to implement the bulk of the algorithm.
+
+Benefits and Drawbacks
+
+- A benefit of the template method is that it provides for good code re-use. 
+
+- A benefit of the template method is that it encapsulates a portion of the algorithm from the subclasses
+  since it is the parent that calls the child rather than the other way round.
+  
+- A drawback of the template method is that the subclass can forget to call an operation in its parent
+  class since the abstract methods can be overridden.
+  
+Example -
+
+An example of the template method would be a "fill in the blanks" form. In this form, we have the default
+text, and then a series of blanks where which we have to fill in to complete the form.
+
+In this example, the basic structure is -
+
+1. Abstract class
+
+- The abstract class contains the bulk of the text of our form. 
+- The abstract class defines methods to retrieve attributes or values from its subclasses like, name, date
+  of birth and current city.
+  
+2. Concrete Class
+
+- The concrete class extends the abstract class and implements the abstract methods from the parent class 
 
