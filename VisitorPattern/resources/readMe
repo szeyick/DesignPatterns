@@ -1,0 +1,90 @@
+The Visitor Pattern
+
+The visitor pattern allows you to define new methods and behaviours for an object without changing
+the objects class.
+
+The idea is to create a visitor class that implements the additional functionality on behalf of the class.
+
+When to use - 
+
+- The visitor pattern can be used when we have an object or group of objects that are only referred to by its
+  interface and we want to perform operations on its concrete class.
+  
+- The visitor pattern can be used when we have a collection of objects and we want to perform operations on its
+  concrete class without having to use an "instance of" conditional check to ensure we have the correct
+  concrete class.
+  
+Basic Structure - 
+
+1. Visitor
+
+- The visitor declares a visit method for each class of ConcreteElement that it supports. The method
+  name is the same, but the type corresponds to the type of ConcreteElement that it will handle. This 
+  lets the visitor determine the concrete class of the element being visited. 
+  
+- The visitor can then access the element directly through this interface.
+  
+2. Concrete Visitor
+
+- The concrete visitor implements each method declared by the visitor. 
+
+3. Element
+
+- The element defines an accept method that takes the visitor as an argument.
+
+4. Concrete Element 
+
+- The concrete element implements the accept method.
+- The concrete element passes itself to the visitor through the visit method.
+
+5. Object Structure
+
+- The object structure is an object that is composed of many concrete elements.
+- The object structure has the capability to traverse through its concrete elements.
+- The object structure can provide an additional interface to allow the visitor to visit its elements.
+- The object structure can be a composite object.
+
+Benefits and Drawbacks -
+
+- A benefit of the visitor pattern is that it makes adding additional methods easy. Additional operations
+  can be added by adding a new method in the visitor, whereas if the functionality is spread over the many
+  subclasses, then a class may need to change to handle the new operation. 
+  
+- A benefit of the visitor pattern is that it localises related behaviour inside the visitor. 
+
+- A benefit of the visitor pattern is that we can visit objects in a structure irrespective of type. 
+
+- A drawback of the visitor pattern is that it is difficult to add new ConcreteElement classes. The pattern
+  makes it difficult to add subclasses of element as each ConcreteElement provides an additional method to be
+  added by the ConcreteVisitor. 
+  
+- A drawback of the visitor pattern is that it breaks an ConcreteElements encapsulation. The reason for this is
+  that a ConcreteElement is required to give a visitor access to its internal state, which means that it needs
+  to provide public methods for the visitor to access.   
+  
+Example -
+
+An example of the visitor pattern would be a teacher taking attendance in a class. In this example, rather
+than having all the children say that they are present, we would have a visitor that will respond for them.
+
+In this example, the basic structure is -
+
+1. Visitor
+
+- The visitor will contain method names which are identical, with the arguments being the different concrete
+  element types that the visitor can process.
+  
+2. Concrete Visitor
+
+- The concrete visitor will implement the methods in the interface with the specific functionality.
+
+3. Element
+
+- The element interface method will pass in a reference to the visitor for the elements subclasses to
+  implement. 
+  
+4. Concrete Element (Students)
+
+- The concrete element will implement the element interface.
+- The concrete element will pass itself to the concrete visitor, where it will be handled by the method that
+  takes the concrete element type as its method argument.
