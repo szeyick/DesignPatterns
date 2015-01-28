@@ -7,3 +7,59 @@ how objects communicate with each other.
 Behavioural class patterns use inheritence to distribute behaviour between classes.
 
 Behavioural object patterns use object composition to know about each other. 
+
+Encapsulating Variation -
+
+When an aspect of a program changes frequently, behavioral patterns encapsulates the state. It is then
+up to the program to make use of the object if it depends on it.
+
+The patterns usually define an abstract class or an interface that describes the object that they are
+encapsulating.
+
+- A strategy object encapsulates the algorithm that can be switched in/out (Strategy Pattern)
+- A state object defines the specific behaviour of a state (State Pattern)
+- A mediator object encapsulates the communications interface between objects (Mediator Pattern)
+- A iterator object encapsulates the way that you access and traverse components of the list object
+  that the iterator holds (Iterator Pattern).
+  
+Objects as Arguments -
+
+Several behavioural patterns use an object that is always used as the argument. For example, in the
+Visitor Pattern, the Visitor object is the argument passed into the Element object. Although it is
+passed into the Element, it is never considered to be part of the object itself.
+
+In the Command Pattern, the command is passed onto the invoker as an argument and executed at a later
+state. The client does not know who the recipient of the command is, which de-couples the sender from 
+the receiver.
+
+In the Memento Pattern, the internal state of the object is saved and stored which can be retrieved 
+later.
+
+Both the Command and Memento pattern hides its internal state from the Client.
+
+Encapsulate Communication or Distribute?
+
+The Mediator Pattern encapsulates communication between objects within itself, all calls are made to
+the mediator, which then re-directs the call to the correct recipient.
+
+The Observer Pattern on the other hand, Subject object register themselves with the Observer, who then
+distributes its communication by telling all its subjects of a state change.
+
+Decoupling Senders and Recievers
+
+The Command, Observer, Mediator and Chain of Responsibility de-couple the sender from the receiver meaning
+that the patterns sit between the sender of a message and its recipient.
+
+The Command Pattern utilises a Command object to send a request on behalf of the sender. It allows the
+sender to utilise multiple command objects to send requests to different receivers without having to
+explicitly know about them.
+
+The Observer Pattern decouples senders and receivers by defining an interface that the receiver implements
+to be notified of changes in the sender. It is best used when there is a data dependency between them.
+
+The Mediator Pattern decouples the sender and receiver by centralising the communication through the Mediator. 
+Senders and receivers only talk to each other through this Mediator. 
+
+The Chain of Responsibility Pattern decouples the sender and receiver by passing the request along a
+chain of possible receivers. The sender blindly sends a request off along the chain hoping that a receiver
+will process the request.
